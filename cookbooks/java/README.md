@@ -1,6 +1,6 @@
 # java cookbook
 
-[![Build Status](https://travis-ci.org/sous-chefs/java.svg?branch=master)](https://travis-ci.org/sous-chefs/java) [![Cookbook Version](https://img.shields.io/cookbook/v/java.svg)](https://supermarket.chef.io/cookbooks/java)
+[![Build Status](https://travis-ci.org/sous-chefs/java.svg?branch=master)](https://travis-ci.org/sous-chefs/java) [![Cookbook Version](https://img.shields.io/cookbook/v/java.svg)](https://supermarket.chef.io/cookbooks/java) [![pullreminders](https://pullreminders.com/badge.svg)](https://pullreminders.com?ref=badge)
 
 This cookbook installs a Java JDK/JRE. It defaults to installing OpenJDK, but it can also install Oracle and IBM JDKs.
 
@@ -87,6 +87,7 @@ Chef 12.9+
 See `attributes/default.rb` for default values.
 
 - `node['java']['install_flavor']` - Flavor of JVM you would like installed (`oracle`, `oracle_rpm`, `openjdk`, `ibm`, `windows`), default `openjdk` on Linux/Unix platforms, `windows` on Windows platforms.
+- `node['java']['install_type']` - Type of Java installation, defauls to jdk, needed for JCE to find the install path of jar's for JDK/JRE installation.
 - `node['java']['jdk_version']` - JDK version to install, defaults to `'6'`.
 - `node['java']['java_home']` - Default location of the "`$JAVA_HOME`". To configure this attribute for `ibm`, `ibm_tar`, and `oracle_rpm` install flavors, you must use an attribute precedence of `force_default` or higher in your attribute file.
 - `node['java']['set_etc_environment']` - Optionally sets JAVA_HOME in `/etc/environment` for Default `false`.
@@ -102,6 +103,8 @@ See `attributes/default.rb` for default values.
 - `node['java']['windows']['aws_access_key_id']` - AWS Acess Key ID to use with AWS API calls
 - `node['java']['windows']['aws_secret_access_key']` - AWS Secret Access Key to use with AWS API calls
 - `node['java']['windows']['aws_session_token']` - AWS Session Token to use with AWS API calls
+- `node['java']['windows']['returns']` - The allowed return codes for the package to
+  be installed on Windows machines (default is 0, you can define an array of valid values.)
 - `node['java']['ibm']['url']` - The URL which to download the IBM JDK/SDK. See the `ibm` recipe section below.
 - `node['java']['ibm']['accept_ibm_download_terms']` - Indicates that you accept IBM's EULA (for `java::ibm`)
 - `node['java']['oracle_rpm']['type']` - Type of java RPM (`jre` or `jdk`), default `jdk`
@@ -188,7 +191,7 @@ At this time the `java::ibm` recipe does not support multiple SDK installations.
 
 ### notify
 
-The `java::notify` recipe contains a log resource that's `:write` action is called when a JDK version changes. This gives cookbook authors a way to subscribe to JDK changes and take actions (say restart a java service):
+The `java::notify` recipe contains a log resource whose `:write` action is called when a JDK version changes. This gives cookbook authors a way to subscribe to JDK changes and take actions (say restart a java service):
 
 ```ruby
 service 'somejavaservice' do

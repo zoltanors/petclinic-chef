@@ -44,6 +44,7 @@ when 'windows'
   default['java']['windows']['public_jre_home'] = nil
   default['java']['windows']['owner'] = 'administrator'
   default['java']['windows']['remove_obsolete'] = false
+  default['java']['windows']['returns'] = 0
 when 'mac_os_x'
   default['java']['install_flavor'] = 'homebrew'
 else
@@ -132,12 +133,12 @@ default['java']['jdk']['8']['bin_cmds'] = %w(appletviewer apt ControlPanel extch
 # Official checksums for the latest release can be found at https://www.oracle.com/webfolder/s/digest/8u172checksum.html
 
 # x86_64
-default['java']['jdk']['8']['x86_64']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz'
-default['java']['jdk']['8']['x86_64']['checksum'] = '1845567095bfbfebd42ed0d09397939796d05456290fb20a83c476ba09f991d3'
+default['java']['jdk']['8']['x86_64']['url'] = 'https://download.oracle.com/otn-pub/java/jdk/8u202-b08/1961070e4c9b4e26a04e7f5a083f551e/jdk-8u202-linux-x64.tar.gz'
+default['java']['jdk']['8']['x86_64']['checksum'] = '9a5c32411a6a06e22b69c495b7975034409fa1652d03aeb8eb5b6f59fd4594e0'
 
 # i586
-default['java']['jdk']['8']['i586']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-i586.tar.gz'
-default['java']['jdk']['8']['i586']['checksum'] = 'd78a023abffb7ce4aade43e6db64bbad5984e7c82c54c332da445c9a79c1a904'
+default['java']['jdk']['8']['i586']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-i586.tar.gz'
+default['java']['jdk']['8']['i586']['checksum'] = '640333e749f24428b78c2b10422f7174f8fbd0b8acde27526c195024fad8b6b6'
 
 # x86_64
 default['java']['jdk']['10']['x86_64']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/10.0.1+10/fb4372174a714e6b8c52526dc134031e/jdk-10.0.1_linux-x64_bin.tar.gz'
@@ -152,6 +153,15 @@ default['java']['jdk']['10']['bin_cmds'] = %w(appletviewer jar javac javapackage
                                               jcontrol jdeps jinfo jmap jps jstack jweblauncher pack200 rmiregistry servertool wsgen
                                               jaotc java javap jcmd jdb jhsdb jjs jmc jrunscript jstat keytool rmic schemagen tnameserv
                                               wsimport)
+
+# x86_64
+default['java']['jdk']['11']['x86_64']['url'] = 'http://download.oracle.com/otn-pub/java/jdk/11.0.1+13/90cf5d8f270a4347a95050320eef3fb7/jdk-11.0.1_linux-x64_bin.tar.gz'
+default['java']['jdk']['11']['x86_64']['checksum'] = 'e7fd856bacad04b6dbf3606094b6a81fa9930d6dbb044bbd787be7ea93abc885'
+
+default['java']['jdk']['11']['bin_cmds'] = %w(jaotc jar jarsigner java javac javadoc javap jcmd jconsole jdb jdeprscan
+                                              jdeps jhsdb jimage jinfo jjs jlink jmap jmod jps jrunscript jshell jstack
+                                              jstat jstatd keytool pack200 rmic rmid rmiregistry serialver unpack200
+                                              )
 
 default['java']['oracle']['jce']['enabled'] = false
 default['java']['oracle']['jce']['10']['url'] = 'https://edelivery.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip'

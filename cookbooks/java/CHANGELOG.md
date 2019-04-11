@@ -2,6 +2,44 @@
 
 This file is used to list changes made in each version of the Java cookbook.
 
+## Unreleased
+
+## 3.2.1 - (2019-02-27)
+- Fixed oracle download link for JDK 8 (update to 8u202 from 8u201)
+
+## 3.2.0 - (2019-01-24)
+
+- Add support OpenJDK 11
+- Fixed oracle download link again
+
+## 3.1.2 - (2018-12-11)
+
+- Set java home on macosx using /usr/libexec/java_home
+- Find command should have ./ for path to search, works for nix and mac
+- Make `java_certificate` work with SNI endpoints
+
+## 3.1.1 - (2018-11-09)
+
+- Fix jce installation linux
+- Allow overwrite `returns` property of windows_packages
+
+## 3.1.0 - (2018-10-18)
+
+- Add support for JDK 11
+
+## 3.0.0 - (2018-10-18)
+
+- Fix broken JCE with JRE installations
+- make cert alias matching case insensitive as `keytool` always returns results downcases
+- BREAKING CHANGE: fixed greedy matching by adding a word boundry when checking cert alias this prevents matching `foo_123` as `foo`
+- verify artifact after downloading from oracle
+- fixed `recipes/openjdk` when `node['java']['jdk_version']` by casting it to a string
+- Updated Oracle Java links to 8u191
+
+## 2.2.1 - (2018-09-29)
+
+- Allows for additional Oracle (post 9) jdk download file naming, including '10.0.2'. '18.9', '11'
+
 ## 2.2.0 - (2018-07-19)
 
 - Updated Oracle Java links to 8u181
