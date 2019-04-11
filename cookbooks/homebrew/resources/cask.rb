@@ -18,6 +18,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+chef_version_for_provides '< 14.0' if respond_to?(:chef_version_for_provides)
+resource_name :homebrew_cask
+
 property :cask_name, String, regex: %r{^[\w/-]+$}, name_property: true
 property :options, String
 property :install_cask, [true, false], default: true
@@ -25,7 +29,7 @@ property :homebrew_path, String, default: '/usr/local/bin/brew'
 property :owner, String, default: lazy { Homebrew.owner } # lazy to prevent breaking compilation on non-macOS platforms
 
 action :install do
-  homebrew_tap 'caskroom/cask' if new_resource.install_cask
+  homebrew_tap 'homebrew/cask' if new_resource.install_cask
 
   unless casked?
     converge_by("install cask #{new_resource.name} #{new_resource.options}") do
@@ -38,7 +42,7 @@ action :install do
 end
 
 action :remove do
-  homebrew_tap 'caskroom/cask' if new_resource.install_cask
+  homebrew_tap 'homebrew/cask' if new_resource.install_cask
 
   if casked?
     converge_by("uninstall cask #{new_resource.name}") do
@@ -57,7 +61,7 @@ action_class do
 
   def casked?
     unscoped_name = new_resource.name.split('/').last
-    shell_out!('#{new_resource.homebrew_path} cask list 2>/dev/null',
+    shell_out!("#{new_resource.homebrew_path} cask list 2>/dev/null",
       user: new_resource.owner,
       env:  { 'HOME' => ::Dir.home(new_resource.owner), 'USER' => new_resource.owner },
       cwd: ::Dir.home(new_resource.owner)).stdout.split.include?(unscoped_name)

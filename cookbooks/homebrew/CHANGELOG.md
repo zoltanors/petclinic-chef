@@ -2,6 +2,24 @@
 
 This file is used to list changes made in each version of the homebrew cookbook.
 
+## 5.0.8 (2018-10-04)
+
+- Updates homebrew cask tap to homebrew/cask
+- Updates URLs to the homebrew cask repository
+
+## 5.0.7 (2018-09-26)
+
+- Fix cask resource running each chef-client run
+
+## 5.0.6 (2018-09-26)
+
+- Avoid CHEF-25 Deprecation warnings by making the tap/cask resources no-ops on modern chef-client releases
+
+## 5.0.5 (2018-09-04)
+
+- Update name of macos in kitchen config
+- Add deprecation notice for the homebrew_tap and homebrew_cask resources. These resources are now built into Chef 14 and they will be removed from this cookbook when Chef 13 goes EOL, April 2019.
+
 ## 5.0.4 (2018-03-16)
 
 - Fix backwards logic in the cask install action
